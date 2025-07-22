@@ -1,0 +1,98 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+.conda/
+conda-meta/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Data, model weights, and outputs
+data/*.jsonl
+data/*.abc
+data/*.xml
+data/*.mid
+data/*.midi
+data/*.mp3
+data/*.png
+data/*.pdf
+data/output/
+data/interleaved/
+data/augmented/
+data/original/
+data/*/
+output/
+output/*
+feature/
+feature/*
+*.pth
+*.ckpt
+
+# Gradio demo artifacts
+gradio/__pycache__/
+gradio/*.pyc
+gradio/output/
+gradio/.ipynb_checkpoints
+
+# Clamp2, RL, pretrain, finetune, inference outputs
+clamp2/feature/
+clamp2/output/
+RL/output/
+RL/*.pth
+pretrain/*.pth
+finetune/*.pth
+inference/output/
+inference/*.pth
+
+# Logs
+*.log
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Misc
+*.swp
+*.swo
+*~
