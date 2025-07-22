@@ -431,7 +431,7 @@ prevloc = 0
 
 def detectBeamBreak(line, loc, t):
     global prevloc  # location in string 'line' of previous note match
-    xs = line[prevloc:loc + 1]  # string between previous and current note match
+    xs = line[prevloc : loc + 1]  # string between previous and current note match
     xs = xs.lstrip()  # first note match starts on a space!
     prevloc = loc  # location in string 'line' of current note match
     b = pObj("bbrk", [" " in xs])  # space somewhere between two notes -> beambreak
@@ -787,6 +787,7 @@ def fixSlurs(x):  # repair slurs when after broken sign or grace-close
 def splitHeaderVoices(abctext):
     def escField(x):
         return "[" + x.replace("]", r"%5d") + "]"  # hope nobody uses %5d in a field
+
     r1 = re.compile(r"%.*$")  # comments
     r2 = re.compile(
         r"^([A-Zw]:.*$)|\[[A-Zw]:[^]]*]$"
@@ -2788,9 +2789,12 @@ class MusicXml:
             def getMidNum(sndnm):  # find midi number of GM drum sound name
                 pnms = sndnm.split("-")  # sound name parts (from I:percmap)
                 ps = s.percsnd[:]  # copy of the instruments
-                
+
                 def _f(ip, xs, pnm):
-                    return ip < len(xs) and xs[ip].find(pnm) > -1  # part xs[ip] and pnm match
+                    return (
+                        ip < len(xs) and xs[ip].find(pnm) > -1
+                    )  # part xs[ip] and pnm match
+
                 for ip, pnm in enumerate(pnms):  # match all percmap sound name parts
                     ps = [
                         (nm, mnum) for nm, mnum in ps if _f(ip, nm.split("-"), pnm)
@@ -2893,7 +2897,10 @@ class MusicXml:
                 prg = prg_nw or s.midprg[1]
                 vol = vol_nw or s.midprg[2]
                 pan = pan_nw or s.midprg[3]
-                instId = "I%s-%s" % (s.pid, "")  # only look for real instruments, no percussion
+                instId = "I%s-%s" % (
+                    s.pid,
+                    "",
+                )  # only look for real instruments, no percussion
                 if instId in s.midiInst:
                     instChange(ch, prg)  # instChance -> doFields
                 s.midprg = [ch, prg, vol, pan]  # mknote: new instrument -> s.midiInst
@@ -2923,6 +2930,7 @@ class MusicXml:
 
         def f(x):
             return [x] if isinstance(x, uni_type) else x
+
         s.staves = lmap(f, mkStaves(score, vdefs))  # [[vid] for each staff]
         s.grands = lmap(f, mkGrand(score, vdefs))  # [staff-id], staff-id == [vid][0]
         s.groups = mkGroups(score)
@@ -3121,9 +3129,12 @@ class MusicXml:
             for id, voice in voices:
                 if lbrk_insert:  # insert linebreak at EOL
                     r1 = re.compile(r"\[[wA-Z]:[^]]*\]")  # inline field
-                    
+
                     def has_abc(x):
-                        return r1.sub("", x).strip()  # empty if line only contains inline fields
+                        return r1.sub(
+                            "", x
+                        ).strip()  # empty if line only contains inline fields
+
                     voice = "\n".join(
                         [
                             balk.rstrip("$!") + "$" if has_abc(balk) else balk
