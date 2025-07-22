@@ -6,8 +6,26 @@ import wandb
 import torch
 import random
 import numpy as np
-from utils import *
-from config import *
+from utils import Patchilizer, NotaGenLMHeadModel
+from config import (
+    BATCH_SIZE,
+    PATCH_NUM_LAYERS,
+    PATCH_LENGTH,
+    HIDDEN_SIZE,
+    CHAR_NUM_LAYERS,
+    PATCH_SIZE,
+    LEARNING_RATE,
+    WANDB_LOGGING,
+    WANDB_KEY,
+    WANDB_NAME,
+    DATA_TRAIN_INDEX_PATH,
+    DATA_EVAL_INDEX_PATH,
+    NUM_EPOCHS,
+    ACCUMULATION_STEPS,
+    LOAD_FROM_CHECKPOINT,
+    WEIGHTS_PATH,
+    LOGS_PATH,
+)
 from tqdm import tqdm
 from copy import deepcopy
 from torch.cuda.amp import autocast, GradScaler

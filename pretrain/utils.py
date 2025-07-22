@@ -3,7 +3,7 @@ import random
 import bisect
 import re
 import numpy as np
-from config import *
+from config import PATCH_STREAM, PATCH_SIZE, PATCH_LENGTH, PATCH_SAMPLING_BATCH_SIZE
 from transformers import GPT2Model, GPT2LMHeadModel, PreTrainedModel
 from samplings import top_p_sampling, top_k_sampling, temperature_sampling
 
