@@ -25,16 +25,27 @@ M3_WANDB_LOG = True  # Enable logging to Weights and Biases
 M3_LOAD_CKPT = True  # Load model weights from a checkpoint if available
 
 M3_WEIGHTS_PATH = (
-    "weights_m3_p_size_" + str(PATCH_SIZE) +
-    "_p_length_" + str(PATCH_LENGTH) +
-    "_t_layers_" + str(TOKEN_NUM_LAYERS) +
-    "_p_layers_" + str(PATCH_NUM_LAYERS) +
-    "_h_size_" + str(M3_HIDDEN_SIZE) +
-    "_lr_" + str(M3_LEARNING_RATE) +
-    "_batch_" + str(M3_BATCH_SIZE) +
-    "_mask_" + str(M3_MASK_RATIO) + ".pth"
+    "weights_m3_p_size_"
+    + str(PATCH_SIZE)
+    + "_p_length_"
+    + str(PATCH_LENGTH)
+    + "_t_layers_"
+    + str(TOKEN_NUM_LAYERS)
+    + "_p_layers_"
+    + str(PATCH_NUM_LAYERS)
+    + "_h_size_"
+    + str(M3_HIDDEN_SIZE)
+    + "_lr_"
+    + str(M3_LEARNING_RATE)
+    + "_batch_"
+    + str(M3_BATCH_SIZE)
+    + "_mask_"
+    + str(M3_MASK_RATIO)
+    + ".pth"
 )  # Path to store the model weights
-M3_LOGS_PATH = M3_WEIGHTS_PATH.replace("weights", "logs").replace("pth", "txt")  # Path to save training logs
+M3_LOGS_PATH = M3_WEIGHTS_PATH.replace("weights", "logs").replace(
+    "pth", "txt"
+)  # Path to save training logs
 
 # -------------------- Configuration for CLaMP2 Training ----------------
 TRAIN_JSONL = "<path_to_training_jsonl>"  # Path to the JSONL file with training data
@@ -55,13 +66,24 @@ CLAMP2_WANDB_LOG = True  # Enable logging to Weights and Biases
 CLAMP2_LOAD_CKPT = True  # Load weights from a checkpoint if available
 
 CLAMP2_WEIGHTS_PATH = (
-    "weights_clamp2_h_size_" + str(CLAMP2_HIDDEN_SIZE) +
-    "_lr_" + str(CLAMP2_LEARNING_RATE) +
-    "_batch_" + str(CLAMP2_BATCH_SIZE) +
-    "_scale_" + str(LOGIT_SCALE) +
-    "_t_length_" + str(MAX_TEXT_LENGTH) +
-    "_t_model_" + TEXT_MODEL_NAME.replace("/", "_") +
-    "_t_dropout_" + str(TEXT_DROPOUT) +
-    "_m3_" + str(CLAMP2_LOAD_M3) + ".pth"
+    "weights_clamp2_h_size_"
+    + str(CLAMP2_HIDDEN_SIZE)
+    + "_lr_"
+    + str(CLAMP2_LEARNING_RATE)
+    + "_batch_"
+    + str(CLAMP2_BATCH_SIZE)
+    + "_scale_"
+    + str(LOGIT_SCALE)
+    + "_t_length_"
+    + str(MAX_TEXT_LENGTH)
+    + "_t_model_"
+    + TEXT_MODEL_NAME.replace("/", "_")
+    + "_t_dropout_"
+    + str(TEXT_DROPOUT)
+    + "_m3_"
+    + str(CLAMP2_LOAD_M3)
+    + ".pth"
 )  # Path to store CLaMP2 model weights
-CLAMP2_LOGS_PATH = CLAMP2_WEIGHTS_PATH.replace("weights", "logs").replace("pth", "txt")  # Path to save training logs
+CLAMP2_LOGS_PATH = CLAMP2_WEIGHTS_PATH.replace("weights", "logs").replace(
+    "pth", "txt"
+)  # Path to save training logs
