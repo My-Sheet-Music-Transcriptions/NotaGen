@@ -1,5 +1,9 @@
-ORI_FOLDER = ""  # Replace with the path to your folder containing standard/interleaved abc files
-DES_FOLDER = ""   # The script will convert the abc files and output musicxml files to this folder
+ORI_FOLDER = (
+    ""  # Replace with the path to your folder containing standard/interleaved abc files
+)
+DES_FOLDER = (
+    ""  # The script will convert the abc files and output musicxml files to this folder
+)
 
 import os
 import math
@@ -8,31 +12,37 @@ import subprocess
 from tqdm import tqdm
 from multiprocessing import Pool
 
+
 def convert_abc2xml(file_list):
-    cmd = 'python abc2xml.py '
+    cmd = "python abc2xml.py "
     for file in tqdm(file_list):
-        filename = file.split('/')[-1]  # Extract file name
+        filename = file.split("/")[-1]  # Extract file name
         os.makedirs(DES_FOLDER, exist_ok=True)
 
         try:
-            p = subprocess.Popen(cmd + '"' + file + '"', stdout=subprocess.PIPE, shell=True)
+            p = subprocess.Popen(
+                cmd + '"' + file + '"', stdout=subprocess.PIPE, shell=True
+            )
             result = p.communicate()
-            output = result[0].decode('utf-8')
+            output = result[0].decode("utf-8")
 
-            if output == '':
+            if output == "":
                 with open("logs/abc2xml_error_log.txt", "a", encoding="utf-8") as f:
-                    f.write(file + '\n')
+                    f.write(file + "\n")
                 continue
             else:
-                output_path = f"{DES_FOLDER}/" + ".".join(filename.split(".")[:-1]) + ".xml"
-                with open(output_path, 'w', encoding='utf-8') as f:
+                output_path = (
+                    f"{DES_FOLDER}/" + ".".join(filename.split(".")[:-1]) + ".xml"
+                )
+                with open(output_path, "w", encoding="utf-8") as f:
                     f.write(output)
         except Exception as e:
             with open("logs/abc2xml_error_log.txt", "a", encoding="utf-8") as f:
-                f.write(file + ' ' + str(e) + '\n')
+                f.write(file + " " + str(e) + "\n")
             pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     file_list = []
     os.makedirs("logs", exist_ok=True)
 
